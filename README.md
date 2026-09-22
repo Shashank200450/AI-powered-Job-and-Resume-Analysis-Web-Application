@@ -1,4 +1,4 @@
-# 💼 JOBSINLINE - AI Career & Resume Intelligence Platform
+# 💼 AI-powered Job and Resume Analysis Web Application
 
 JOBSINLINE is a full-stack Python (Flask) and modern responsive web application designed for intelligent resume parsing, ATS compatibility matching, 170+ job role discovery, and AI career coaching.
 
