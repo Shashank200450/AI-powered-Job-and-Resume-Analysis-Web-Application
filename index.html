@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JOBSINLINE - AI-powered Job & Resume Analysis Platform. Match your resume with high-demand job roles and discover career insights.">
+    <title>JOBSINLINE | Smart Career & Resume Analysis</title>
+    <link rel="stylesheet" href="/static/sign_up_styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20%22100%22><text y=%22.9em%22 font-size=%2290%22>💼</text></svg>">
+</head>
+<body>
+    <div id="toast-container"></div>
+
+    <div class="auth-wrapper">
+        <div class="auth-header">
+            <div class="logo-brand">
+                <span>💼</span> JOBSINLINE
+            </div>
+            <p>AI-Powered Career Intelligence & Resume Analyzer</p>
+        </div>
+
+        <div class="container" id="container">
+            <!-- Login Form -->
+            <div class="form-container login-container">
+                <form id="loginForm" autocomplete="on">
+                    <h1>Sign In</h1>
+                    <p class="form-subtitle">Enter your credentials to access your dashboard</p>
+                    
+                    <div class="input-box">
+                        <label for="login-username">Username</label>
+                        <input type="text" id="login-username" name="username" placeholder="e.g. alexmorgan" required autocomplete="username">
+                    </div>
+                    
+                    <div class="input-box">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" name="password" placeholder="••••••••" required autocomplete="current-password">
+                    </div>
+                    
+                    <button type="submit" class="btn" id="login-submit-btn">
+                        <span>Sign In</span> →
+                    </button>
+                </form>
+            </div>
+
+            <!-- Register Form -->
+            <div class="form-container register-container">
+                <form id="registerForm" autocomplete="on">
+                    <h1>Create Account</h1>
+                    <p class="form-subtitle">Join JOBSINLINE to accelerate your career matching</p>
+                    
+                    <div class="input-box">
+                        <label for="reg-username">Username</label>
+                        <input type="text" id="reg-username" name="username" placeholder="e.g. alexmorgan" required autocomplete="username">
+                    </div>
+                    
+                    <div class="input-box">
+                        <label for="reg-email">Email Address</label>
+                        <input type="email" id="reg-email" name="email" placeholder="alex@example.com" required autocomplete="email">
+                    </div>
+                    
+                    <div class="input-box">
+                        <label for="reg-phone">Phone Number</label>
+                        <input type="tel" id="reg-phone" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel">
+                    </div>
+                    
+                    <div class="input-box">
+                        <label for="reg-password">Password</label>
+                        <input type="password" id="reg-password" name="password" placeholder="••••••••" required autocomplete="new-password">
+                    </div>
+                    
+                    <button type="submit" class="btn" id="reg-submit-btn">
+                        <span>Create Account</span> →
+                    </button>
+                </form>
+            </div>
+
+            <!-- Sliding Overlay -->
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>Already have an account? Sign in to continue analyzing your resumes and exploring matching roles.</p>
+                        <button type="button" class="btn btn-secondary login-btn" id="toLoginBtn">Sign In</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>New Here?</h1>
+                        <p>Sign up today and get access to our AI-powered resume analysis, matching algorithms, and career mentor.</p>
+                        <button type="button" class="btn btn-secondary register-btn" id="toRegisterBtn">Create Account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/signup.js"></script>
+</body>
+</html>

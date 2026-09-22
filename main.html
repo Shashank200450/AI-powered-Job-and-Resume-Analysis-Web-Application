@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JOBSINLINE Dashboard - AI-powered Resume Analyzer, Job Compatibility Matcher, and Career Advisor.">
+    <title>JOBSINLINE | Dashboard</title>
+    <link rel="stylesheet" href="/static/sign_up_styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20%22100%22><text y=%22.9em%22 font-size=%2290%22>💼</text></svg>">
+</head>
+<body class="dashboard-wrapper">
+    <div id="toast-container"></div>
+
+    <!-- Top Navigation Bar -->
+    <header class="navbar">
+        <a href="#home" class="brand">
+            <span>💼</span> JOBSINLINE
+            <span class="brand-badge">AI Platform</span>
+        </a>
+
+        <nav class="nav-tabs">
+            <a href="#home" class="nav-link active" data-section="home">
+                <span>🏠</span> Overview
+            </a>
+            <a href="#analyze" class="nav-link" data-section="analyze">
+                <span>📄</span> Resume Analyzer
+            </a>
+            <a href="#related-jobs" class="nav-link" data-section="related-jobs">
+                <span>🔍</span> Related Jobs
+            </a>
+            <a href="#chatbot" class="nav-link" data-section="chatbot">
+                <span>🤖</span> Career AI Bot
+            </a>
+        </nav>
+
+        <div class="user-nav-actions">
+            <div class="user-pill">
+                <div class="user-avatar" id="navAvatar">U</div>
+                <span id="navUsername">User</span>
+            </div>
+            <button type="button" class="btn-logout" id="logoutBtn" title="Sign Out">Sign Out</button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-container">
+        <!-- 1. HOME / OVERVIEW SECTION -->
+        <section id="home-section" class="content-section active">
+            <div class="glass-card hero-card">
+                <h1 id="welcome-message">Welcome to <span>JOBSINLINE</span></h1>
+                <p>Maximize your interview callbacks with instant ATS compatibility scoring, skills gap analysis, and tailored career guidance.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-box" onclick="document.querySelector('[data-section=\'analyze\']').click()">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Target Role Matching</h3>
+                        <p>Upload your resume against any job title to see your compatibility percentage and identify missing keywords.</p>
+                    </div>
+
+                    <div class="feature-box" onclick="document.querySelector('[data-section=\'related-jobs\']').click()">
+                        <div class="feature-icon">🔎</div>
+                        <h3>170+ Job Discovery</h3>
+                        <p>Discover top career paths that best match your current skillset with detailed probability rankings.</p>
+                    </div>
+
+                    <div class="feature-box" onclick="document.querySelector('[data-section=\'chatbot\']').click()">
+                        <div class="feature-icon">💡</div>
+                        <h3>Career AI Coach</h3>
+                        <p>Ask questions on ATS resume optimization, interview prep, roadmaps, and salary negotiation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. RESUME ANALYZER SECTION -->
+        <section id="analyze-section" class="content-section">
+            <div class="section-header">
+                <h2>Resume Analyzer</h2>
+                <p>Compare your PDF resume against any job role to identify matching skills and growth areas</p>
+            </div>
+
+            <div class="glass-card">
+                <form id="resumeForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="jobRole">Target Job Role</label>
+                        <input type="text" id="jobRole" name="jobRole" class="form-control" placeholder="e.g. Software Engineer, Data Scientist, Frontend Developer..." list="jobSuggestions" required autocomplete="off">
+                        <datalist id="jobSuggestions">
+                            <option value="Software Engineer">
+                            <option value="Frontend Developer">
+                            <option value="Backend Developer">
+                            <option value="Full Stack Developer">
+                            <option value="Data Scientist">
+                            <option value="DevOps Engineer">
+                            <option value="Machine Learning Engineer">
+                            <option value="Android Developer">
+                            <option value="Cloud Architect">
+                            <option value="Cybersecurity Analyst">
+                        </datalist>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Resume (PDF File)</label>
+                        <div class="dropzone" id="analyzeDropzone">
+                            <input type="file" id="resume" name="resume" accept="application/pdf" required>
+                            <div class="dropzone-icon">📄</div>
+                            <div class="dropzone-text">Click to choose a file or drag & drop here</div>
+                            <div class="dropzone-subtext">PDF files only (Max 16 MB)</div>
+                            <div class="file-selected-badge" id="analyzeFileBadge" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <div class="demo-helper-row">
+                        <span style="font-size: 0.85rem; color: var(--text-muted);">Don't have a PDF ready?</span>
+                        <button type="button" class="btn-demo" id="useSampleAnalyzeBtn">⚡ Use Sample Resume (1-Click Demo)</button>
+                    </div>
+
+                    <button type="submit" class="btn" id="analyzeSubmitBtn">
+                        <span>Analyze Resume Match</span>
+                    </button>
+                </form>
+
+                <div id="resultContent"></div>
+            </div>
+        </section>
+
+        <!-- 3. RELATED JOBS SECTION -->
+        <section id="related-jobs-section" class="content-section">
+            <div class="section-header">
+                <h2>Find Related Jobs</h2>
+                <p>Discover which of our 170+ tech roles your resume aligns with best</p>
+            </div>
+
+            <div class="glass-card">
+                <form id="relatedJobsForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Upload Resume (PDF)</label>
+                        <div class="dropzone" id="relatedDropzone">
+                            <input type="file" id="relatedResume" name="relatedResume" accept="application/pdf" required>
+                            <div class="dropzone-icon">📂</div>
+                            <div class="dropzone-text">Click to choose a file or drag & drop here</div>
+                            <div class="dropzone-subtext">PDF files only (Max 16 MB)</div>
+                            <div class="file-selected-badge" id="relatedFileBadge" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <div class="demo-helper-row">
+                        <span style="font-size: 0.85rem; color: var(--text-muted);">Want a quick demo?</span>
+                        <button type="button" class="btn-demo" id="useSampleRelatedBtn">⚡ Use Sample Resume (1-Click Demo)</button>
+                    </div>
+
+                    <button type="submit" class="btn" id="relatedSubmitBtn">
+                        <span>Discover Matching Roles</span>
+                    </button>
+                </form>
+
+                <div id="relatedJobsContent"></div>
+            </div>
+        </section>
+
+        <!-- 4. CHATBOT SECTION -->
+        <section id="chatbot-section" class="content-section">
+            <div class="section-header">
+                <h2>Career AI Assistant</h2>
+                <p>Get personalized advice on resume optimization, technical interview prep, and learning roadmaps</p>
+            </div>
+
+            <div id="chatbotContainer">
+                <div id="chatMessages" class="chat-messages">
+                    <div class="chat-bubble bot">
+                        <div class="chat-avatar">🤖</div>
+                        <div class="chat-text">
+                            Hello! I am your JOBSINLINE Career Assistant. How can I help boost your job search today?
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prompt Suggestion Chips -->
+                <div class="chat-chips-row">
+                    <button type="button" class="chip-btn" data-query="How do I format my resume to beat ATS systems?">⭐ Beat ATS Filters</button>
+                    <button type="button" class="chip-btn" data-query="What are the essential skills for a Full Stack Developer in 2026?">🚀 Full Stack Skills</button>
+                    <button type="button" class="chip-btn" data-query="How should I prepare for coding and technical interviews?">💡 Interview Tips</button>
+                    <button type="button" class="chip-btn" data-query="How do I effectively negotiate a higher salary offer?">📈 Salary Negotiation</button>
+                </div>
+
+                <div class="chat-input-row">
+                    <input type="text" id="userInput" placeholder="Ask about resumes, skills, interviews, or career tips..." autocomplete="off">
+                    <button type="button" id="sendButton" class="btn">Send</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/main.js"></script>
+</body>
+</html>
